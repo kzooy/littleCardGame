@@ -3,5 +3,5 @@ so i was trying to do some javascript cuz im trying to learn it. so i made a car
 
 
 so the online project is at:
-https://s2js.com/kzooy/mycardgamejs
+https://s2js.com/kzooy/discord_help
 i hope you like it
