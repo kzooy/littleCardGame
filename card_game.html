@@ -1,79 +1,134 @@
 <HTML>
     <head>
-        <title> card </title>
+        <title> discord_help </title>
     </head>
 
     <body>
-        
-        <h1> carderack: </h1>
-        
-            <h2> the re-shuffleing card game </h2>
-            
-            <css1> <h3> hey! want to play a card game? come here. i plan for this card game to shuffle every turn. </h3>
-            
-            <ul>
-                    <h3>what is this about and why should i be thrilled </h3>
-                
-                <li> hyper thrills to get the best cards in your deck </li>
-                <Li> good stratagy to get you useing your big brain </Li>
-                
-            </ul>
-        
-        </css1>
-        
-        
-        
-        <script>
-        
-        
-            var deck = [];
-            
-            deck [1] = "attack: 1,& <br>"    ; //a 1
-            deck [2] = "attack: 1,& <br>"    ; //a 2
-            deck [3] = "attack: 1,& <br>"    ; //a 3
-            deck [4] = "attack: 1,& <br>"    ; //a 4
-            deck [5] = "attack: 1,& <br>"    ; //a 5
-            deck [6] = "attack: 1,& <br>"    ; //a 6
-            deck [7] = "attack: 1,& <br>"    ; //a 7
-            deck [8] = "attack: 1,& <br>"    ; //a 8
-            deck [9] = "attack: 1,& <br>"    ; //a 9
-            deck [10] = "attack: 1,& <br>"   ;//a 10 //10
-            
-            deck [11] = "attack: 2,& <br>"   ; //a 1
-            deck [12] = "attack: 2,& <br>"   ; //a 2 //2
-            
-            deck [13] = "block: & <br>"  ; //b 1
-            deck [14] = "block: & <br>"  ; //b 2
-            deck [15] = "block: & <br>"  ; //b 3
-            deck [16] = "block: & <br>"  ; //b 4 //4
-            
-            
-            //document.write (deck);
-            
-            document.write ( deck [1] );
-            document.write ( deck [11] );
-            document.write ( deck [16] );
-            document.write ( deck [4] );
-       
-        
-        </script>
 
-<style>
+
+
+
+<button id="card1" onclick="runCard(hand[0]);">x</button>
+<button id="card2" onclick="runCard(hand[1]);">x</button>
+<button id="card3" onclick="runCard(hand[2]);">x</button>
+<button id="card4" onclick="runCard(hand[3]);">x</button>
+<button id="card5" onclick="runCard(hand[4]);">x</button>
+
+
+<p id="p"></p>
+
+
+
+<p> player hp:</p>   <div id="p-hp"></div>
+<p> enemy hp:</p>   <div id="e-hp"></div>
+
+
+
+<script>
+
+// setup
+
+var Hp = 10;
+var enemyHP = 10;
+var block = false;
+var eBlock = false;
+
+document.getElementById("p-hp").innerHTML = Hp;
+document.getElementById("e-hp").innerHTML = enemyHP;
+
+
+
+var deck = [
+  "attack",
+  "attack",
+  "attack",
+  "attack",
+  "attack",
+  "attack",
+  "attack",
+  "attack",
+  "attack",
+
+  "block",
+    "block",
+      "block",
+        "block",
+          "block",
+];
+
+
+
+var hand = [
+  "card 1 404",
+  "card 2 404",
+  "card 3 404",
+  "card 4 404",
+  "card 5 404",
+];
+
+
+function handShuffle () {
+hand[0] = deck[Math.floor((Math.random() * deck.length))];
+hand[1] = deck[Math.floor((Math.random() * deck.length))];
+hand[2] = deck[Math.floor((Math.random() * deck.length))];
+hand[3] = deck[Math.floor((Math.random() * deck.length))];
+hand[4] = deck[Math.floor((Math.random() * deck.length))];
+hand[5] = deck[Math.floor((Math.random() * deck.length))];
+
+document.getElementById("card1").innerHTML = hand[0];
+document.getElementById("card2").innerHTML = hand[1];
+document.getElementById("card3").innerHTML = hand[2];
+document.getElementById("card4").innerHTML = hand[3];
+document.getElementById("card5").innerHTML = hand[4];
+document.getElementById("card6").innerHTML = hand[5];
+}
+
+
+
+
+
+function AiTurn () {
+    if (block == false) {
+        Hp--;
+        document.getElementById("p-hp").innerHTML = Hp;
+    }
+}
+
+// run
+
+
+handShuffle();
+
+
+
+// functions
+
+function runCard (x) {
     
-    body {
+    if ( x.includes("attack") && eBlock == false ) {
         
-        font-family: verdana;
-        color: #33bbff;
-        background-color: #99ddff;
+        enemyHP--;
+        document.getElementById("e-hp").innerHTML = enemyHP;
+        block = false;
+        AiTurn();
+        handShuffle();
+        
     }
     
-    css1 {
+    if ( x.includes("block") ) {
         
-        color: #004080;
+        block = true;
+        AiTurn();
+        handShuffle();
         
     }
     
-</style>
+}
+
+
+
+</script>
+
 
 
     </body>
